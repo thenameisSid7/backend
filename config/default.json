@@ -1,0 +1,15 @@
+{
+	"APPNAME": "contact list app",
+	"PORT": 8000,
+	"LOG_LEVEL": "info",
+	"LOG_FILE_PATH": "/tmp/ticket_service.log",
+	"DATABASE_HOST": "mongodb+srv://siddartha:siddartha1234@assingment-database.8q2ypmx.mongodb.net/test",
+	"API_VERSION": "v1",
+	"JWT_SECRET": "ASSIGNMENT",
+	"JWT_EXPIRE_TIME": "190d",
+	"CLIENT_APPLICATION_URL": "*",
+	"AWS_S3_ID": "",
+	"AWS_S3_SECRET": "",
+	"AWS_S3_BUCKET_NAME": "",
+	"DEFAULT_PAGE_SIZE": 10
+}
