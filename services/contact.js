@@ -7,8 +7,8 @@ exports.createContact = async (contact) => {
   logger.info("service - contact - createContact - start");
   let { error } = validate(contact);
   if (error) {
-    logger.debug(error);
-    console.log(error);
+    // logger.debug(error);
+    // console.log(error);
     return { error: error.message, status: false, errorCode: 400 };
   }
   console.log(contact.name, contact.phone);
@@ -49,6 +49,25 @@ exports.getContact = async () => {
   return { contact, status: true };
 };
 
+exports.updateContact = async (contact) => {
+  logger.info("service - contact - updateContact - start");
+  // create user if not available
+  try {
+    console.log("hi");
+    contact = await Contact.findByIdAndUpdate(contact._id, {
+      "name": contact.name,
+      "phone": contact.phone,
+    });
+    console.log("hi");
+  } catch (ex) {
+    // logger.debug(ex);
+    console.log(ex);
+    return { error: ex, status: false, errorCode: 500 };
+  }
+  // return proper statement of the user.
+  return { contact, status: true };
+};
+
 exports.deleteContact = async (id) => {
   logger.info("service - contact - getContact - start");
   // create user if not available
@@ -67,8 +86,8 @@ exports.deleteContact = async (id) => {
   } catch (ex) {
     // logger.debug(ex);
     console.log(ex);
-    return {error: ex, status: false, errorCode: 500 };
+    return { error: ex, status: false, errorCode: 500 };
   }
   // return proper statement of the user.
-  return {status: true };
+  return { status: true };
 };

@@ -5,6 +5,7 @@ const {
   createContact,
   getContact,
   deleteContact,
+  updateContact,
 } = require("../services/contact");
 
 router.get("/", async (req, res) => {
@@ -21,6 +22,7 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
+
     let contact_request = req.body;
     let { contact, status, error, errorCode } = await createContact(
       contact_request
@@ -34,25 +36,20 @@ router.post("/", async (req, res) => {
   }
 });
 
-// router.put("/", async (req, res) => {
-//   try {
-//     let user_request = req.body;
-//     let { user, token, status, error, errorCode } = await createUser(
-//       user_request
-//     );
-//     if (status) {
-//       const { _id, name, email } = user;
-//       res.cookie("token", token, { expiresIn: config.get("JWT_EXPIRE_TIME") });
-//       return res.status(200).send({
-//         token,
-//         user: { _id, name, email },
-//       });
-//     }
-//     return res.status(errorCode).send({ message: error });
-//   } catch (ex) {
-//     return res.status(505).send({ message: ex.message });
-//   }
-// });
+router.put("/", async (req, res) => {
+  try {
+    let contact = req.body;
+    let { con,status, error, errorCode } = await updateContact(
+      contact
+    );
+    if (status) {
+      return res.status(200).send({con});
+    }
+    return res.status(errorCode).send({ message: error });
+  } catch (ex) {
+    return res.status(505).send({ message: ex.message });
+  }
+});
 
 router.delete("/", async (req, res) => {
   try {
